@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Health Prediction System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/039/247/341/non_2x/ai-generated-stethoscope-and-heart-on-a-cardiogram-background-showcasing-medical-tools-for-cardiology-health-and-heartbeat-examination-in-a-white-and-red-setting-free-photo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #021017; 
+            opacity: 0;
+            animation: slideIn 1s forwards; 
+        }
+        .navbar a {
+            color: #fff;
+        }
+        .navbar-toggler-icon {
+            background-color: #fff; 
+        }
+        .navbar-nav .nav-link {
+            color: #bbb; 
+        }
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+        }
+        .navbar-brand img {
+            height: 80px; 
+            width:150px;
+        }
+        /* Welcome Section */
+        .welcome {
+            margin: 50px auto;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        #exploreBtn:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        transform: scale(1.1); /* Enlarges the button */
+        transition: all 0.3s ease;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+        .footer {
+            background: #202021;
+            color: #ddc9c9;
+            padding: 10px;
+            text-align: center;
+        }
+        .footer a {
+            color: #e2d9d9;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #007bff;
+        }
+        /* Service Cards Styling */
+        .service-card {
+            background-color: #fff; 
+            color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .service-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .service-card h5 {
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+        .service-card p {
+            font-size: 1.1rem;
+        }
+        .service-card img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;  /* Ensures the image maintains its aspect ratio and covers the area */
+    border-radius: 10px;
+}
+.service-card {
+    opacity: 0;
+    transform: scale(0.8); /* Start smaller */
+    transition: all 0.5s ease-in-out;
+}
+
+/* Animation when the card becomes visible */
+.service-card.show {
+    opacity: 1;
+    transform: scale(1); /* Grow to full size */
+}
+
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <!-- Logo inside the navbar -->
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Health Prediction Logo">
+            </a>
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutus">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Section -->
+    <div class="container">
+        <div class="welcome">
+            Welcome to the Health Prediction System
+        </div>
+        <p>Predict health conditions with accuracy using advanced machine learning models.</p>
+        <button id="exploreBtn" class="btn btn-primary btn-lg" data-bs-toggle="collapse" data-bs-target="#diseaseOptions" aria-expanded="false" aria-controls="diseaseOptions">
+            Explore Diseases
+        </button>
+        <div class="collapse mt-4" id="diseaseOptions">
+            <div class="btn-group" role="group" aria-label="Disease Options">
+                <a href="{{ url_for('diabetesPage') }}" class="btn btn-outline-dark">Diabetes</a>
+                <a href="{{ url_for('cancerPage') }}" class="btn btn-outline-dark">Breast Cancer</a>
+                <a href="{{ url_for('heartPage') }}" class="btn btn-outline-dark">Heart Disease</a>
+                <a href="{{ url_for('kidneyPage') }}" class="btn btn-outline-dark">Kidney Disease</a>
+                <a href="{{ url_for('liverPage') }}" class="btn btn-outline-dark">Liver Disease</a>
+                <a href="{{ url_for('malariaPage') }}" class="btn btn-outline-dark">Malaria</a>
+                <a href="{{ url_for('pneumoniaPage') }}" class="btn btn-outline-dark">Pneumonia</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us -->
+    <div id="aboutus" class="container mt-5">
+        <h2>About Us</h2>
+        <p>We are dedicated to empowering healthcare with AI. Our system uses advanced machine learning algorithms to predict a wide range of health conditions, allowing for early diagnosis and more personalized treatments. With our system, healthcare providers can make data-driven decisions, improving patient outcomes and the quality of care.</p>
+        <img src="https://s.yimg.com/ny/api/res/1.2/kPkzEuMOoAiQnKojh95Z6A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTEyMTU-/https://media.zenfs.com/en/purewow_185/a92f533700c85de310af6ac784125708" class="img-fluid rounded mt-4" alt="AI in Healthcare" height="400px" width="400px">
+    </div>
+
+    <!-- Services -->
+    <div id="services" class="container mt-5">
+        <h2>Our Services</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="data:image/jpeg;base64,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" alt="Diabetes Prediction">
+                    <h5>Diabetes Prediction</h5>
+                    <p>Accurate prediction of diabetes risk using a variety of health parameters.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://img.freepik.com/premium-vector/breast-cancer-awareness-with-ribbon-illustration-logo_5379-148.jpg" alt="Cancer Detection">
+                    <h5>Cancer Detection</h5>
+                    <p>Early detection of breast cancer using machine learning algorithms.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAov8JFvTfermZR086HkI57i9DxMDDmL-gTQ&s" alt="Heart Disease Prediction">
+                    <h5>Heart Disease Prediction</h5>
+                    <p>Predictive analysis to assess the risk of heart disease based on lifestyle factors.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNIpF5Rf83-cIPkMvNFQmeTDCaLt7YzIXyZQ&s" alt="Kidney Disease Prediction">
+                    <h5>Kidney Disease Prediction</h5>
+                    <p>Assess the risk of kidney disease using patient data and lifestyle factors.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="data:image/jpeg;base64,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" alt="Liver Disease Prediction">
+                    <h5>Liver Disease Prediction</h5>
+                    <p>Predict liver disease risk using data on alcohol consumption, liver function, and other factors.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2WiP4XihQpxmPqXPZFIVxk1uTRz854ngFA&s" alt="Malaria Detection">
+                    <h5>Malaria Detection</h5>
+                    <p>Early detection of malaria through advanced diagnostic tools.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://www.omegahospitals.com/blog/storage/2024/09/3724991-765x765.jpg" alt="Pneumonia Prediction">
+                    <h5>Pneumonia Prediction</h5>
+                    <p>Predict and diagnose pneumonia risk using machine learning and clinical data.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Footer -->
+     <footer class="footer mt-5">
+        <p>Follow us on:</p>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.google.com" target="_blank"><i class="fab fa-google"></i> Google</a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <p style="color: white;">Made with <span style="color: red;">&hearts;</span> by Amogh,Abhinav,Rishitha,Sanjana </p>
+        <p>&copy; 2024 Health Prediction System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const serviceCards = document.querySelectorAll(".service-card");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show"); // Add the animation class
+                }
+            });
+        });
+
+        serviceCards.forEach((card) => {
+            observer.observe(card); // Observe each service card
+        });
+    });
+</script>
+
+    
